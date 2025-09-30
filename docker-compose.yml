@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Api/Dockerfile
+    container_name: vertrau-api
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    networks:
+      - vertrau-network
+    
+  frontend:
+    build:
+      context: ./frontend-vue
+      dockerfile: Dockerfile
+    container_name: vertrau-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - vertrau-network
+
+networks:
+  vertrau-network:
+    driver: bridge

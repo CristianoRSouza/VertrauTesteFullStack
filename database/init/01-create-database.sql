@@ -1,0 +1,16 @@
+-- Criar database VertrauDB se não existir
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'VertrauDB')
+BEGIN
+    CREATE DATABASE VertrauDB;
+END
+GO
+
+USE VertrauDB;
+GO
+
+-- Configurações de performance
+ALTER DATABASE VertrauDB SET RECOVERY SIMPLE;
+ALTER DATABASE VertrauDB SET AUTO_SHRINK OFF;
+ALTER DATABASE VertrauDB SET AUTO_CREATE_STATISTICS ON;
+ALTER DATABASE VertrauDB SET AUTO_UPDATE_STATISTICS ON;
+GO
